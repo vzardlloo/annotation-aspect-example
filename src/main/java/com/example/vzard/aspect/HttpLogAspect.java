@@ -26,7 +26,7 @@ public class HttpLogAspect {
     ThreadLocal<Long> startTime = new ThreadLocal<>();
 
     // 切面表达式，描述所有所有需要记录log的类
-    @Pointcut("@within(com.example.vzard.annotation.HttpLog)")
+    @Pointcut("@within(com.example.vzard.annotation.HttpLog) && (@within(org.springframework.web.bind.annotation.RestController) || @within(org.springframework.stereotype.Controller))")
     public void httpLog() {
     }
 
