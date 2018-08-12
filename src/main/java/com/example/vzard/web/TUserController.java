@@ -2,6 +2,7 @@ package com.example.vzard.web;
 
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.example.vzard.annotation.HttpLog;
 import com.example.vzard.annotation.TimeStamp;
 import com.example.vzard.entity.TUser;
 import com.example.vzard.generator.IdGenerator;
@@ -30,6 +31,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/v1")
 @Api(tags = "关于用户的操作(用于测试)")
+@HttpLog
 public class TUserController {
     @Autowired
     ITUserService itUserService;
@@ -48,6 +50,7 @@ public class TUserController {
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     @ApiOperation("新增一个用户")
     @TimeStamp(type = TUser.class)
+
     public boolean addUser(@RequestBody TUser user) {
         user.setId(idGenerator.nextStrId());
         return itUserService.insertAllColumn(user);
